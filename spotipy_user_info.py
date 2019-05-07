@@ -8,8 +8,7 @@ import spotipy.util as util
 from spotipy.oauth2 import SpotifyClientCredentials
 from json.decoder import JSONDecodeError
 
-#Username: 1250747227
-
+#Obtains the long term top tracks from a the user Spotify track list.
 def long_term_playlist(spotify_object):
     top_tracks = spotify_object.current_user_top_tracks(limit=50, offset=0, time_range='long_term')
     playlists = spotify_object.current_user_playlists()
@@ -32,9 +31,10 @@ def long_term_playlist(spotify_object):
 
     spotify_object.user_playlist_add_tracks(username, top_playlist['id'], track_list)
 
-
+#Run python script with your Spotify username as a command line argument.
 username = sys.argv[1]
 
+#Enter Spotify authorization ids and redirect uri here.
 client_id = os.getenv('SPOTIPY_CLIENT_ID')
 secret_id = os.getenv('SPOTIPY_CLIENT_SECRET')
 redirect_uri = os.getenv('SPOTIPY_REDIRECT_URI')
